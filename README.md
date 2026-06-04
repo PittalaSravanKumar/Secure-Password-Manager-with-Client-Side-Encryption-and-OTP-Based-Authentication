@@ -1,0 +1,2 @@
+# Secure-Password-Manager-with-Client-Side-Encryption-and-OTP-Based-Authentication
+A Secure Password Manager System built using Python, Flask, Firebase Firestore, Cryptography, OTP-based Email Verification, and Selenium Automation. The system securely stores encrypted credentials using client-side encryption and provides secure password retrieval through authentication and verification mechanisms.
