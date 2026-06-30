@@ -1,0 +1,19 @@
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+from cryptography.hazmat.backends import default_backend
+from cryptography.hazmat.primitives import padding
+import os
+import base64
+import hashlib
+
+def encrypt(plaintext: str, key: str) -> str:
+    key_bytes = key.encode('utf-8').ljust(32, b'\0')[:32]
+    iv = os.urandom(16)
+    padder = padding.PKCS7(128).padder()
+    padded_data = padder.update(plaintext.encode('utf-8')) + padder.finalize()
+    algorithm = algorithms.Camellia(key_bytes)
+    cipher = Cipher(algorithm, modes.CBC(iv), backend=default_backend())
+    encryptor = cipher.encryptor()
+    ciphertext = encryptor.update(padded_data) + encryptor.finalize()
+    hmac_key = hashlib.sha256(key_bytes + b'hmac').digest()
+    hmac_value = hashlib.sha256(hmac_key + iv + ciphertext).digest()
+    return base64.b64encode(iv + ciphertext + hmac_value).decode('utf-8')

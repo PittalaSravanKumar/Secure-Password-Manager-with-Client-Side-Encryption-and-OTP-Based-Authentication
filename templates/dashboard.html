@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Successful</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .success-container {
+            background: white;
+            padding: 60px 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            animation: slideIn 0.5s ease-out;
+        }
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .checkmark-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #28a745, #20c997);
+            margin: 0 auto 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: scaleIn 0.5s ease-out 0.2s both;
+        }
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+        .checkmark {
+            font-size: 50px;
+            color: white;
+            animation: checkmark 0.5s ease-out 0.4s both;
+        }
+        @keyframes checkmark {
+            from {
+                opacity: 0;
+                transform: scale(0);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 32px;
+        }
+        .welcome-text {
+            color: #555;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .user-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+            text-align: left;
+        }
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .info-row:last-child {
+            border-bottom: none;
+        }
+        .info-label {
+            font-weight: 600;
+            color: #667eea;
+        }
+        .info-value {
+            color: #333;
+        }
+        .timestamp {
+            color: #6c757d;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        button {
+            flex: 1;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(108, 117, 125, 0.4);
+        }
+        .features {
+            margin-top: 30px;
+            text-align: left;
+        }
+        .features h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        .feature-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            color: #555;
+        }
+        .feature-icon {
+            font-size: 20px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <div class="checkmark-circle">
+            <div class="checkmark">✓</div>
+        </div>
+        
+        <h1>Login Successful!</h1>
+        <p class="welcome-text">Welcome back, <strong id="userName">User</strong>!</p>
+        
+        <div class="user-info">
+            <div class="info-row">
+                <span class="info-label">User ID:</span>
+                <span class="info-value" id="userId">--</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Email:</span>
+                <span class="info-value" id="userEmail">--</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Status:</span>
+                <span class="info-value" style="color: #28a745; font-weight: 600;">Active</span>
+            </div>
+        </div>
+
+        <div class="features">
+            <h3>What's Next?</h3>
+            <div class="feature-item">
+                <span class="feature-icon">🎯</span>
+                <span>Access your dashboard and personalized content</span>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">🔒</span>
+                <span>Your session is secure and encrypted</span>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">⚡</span>
+                <span>All features are now available to you</span>
+            </div>
+        </div>
+
+        <div class="button-group">
+            <button class="btn-primary" onclick="goToDashboard()">Go to Dashboard</button>
+            <button class="btn-secondary" onclick="logout()">Logout</button>
+        </div>
+
+        <p class="timestamp">Logged in at: <span id="loginTime"></span></p>
+    </div>
+
+    <script>
+        // Get URL parameters
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            const results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        // Display user information
+        const userId = getUrlParameter('userId') || 'Not provided';
+        const userEmail = getUrlParameter('email') || 'Not provided';
+        const userName = getUrlParameter('name') || getUrlParameter('firstName') || 'User';
+
+        document.getElementById('userName').textContent = userName;
+        document.getElementById('userId').textContent = userId;
+        document.getElementById('userEmail').textContent = userEmail;
+
+        // Display current time
+        const now = new Date();
+        const timeString = now.toLocaleString('en-US', {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+        });
+        document.getElementById('loginTime').textContent = timeString;
+
+        function goToDashboard() {
+            // Redirect to dashboard or main application page
+            window.location.href = 'main_dashboard.html';
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                // Clear any session data
+                window.location.href = 'sample_login.html';
+            }
+        }
+
+        //Auto-redirect after 10 seconds (optional)
+        // setTimeout(() => {
+        //     goToDashboard();
+        // }, 10000);
+    </script>
+</body>
+</html>
